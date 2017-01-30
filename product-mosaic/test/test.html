@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<head>
+<style>
+.main{
+	height:900px;
+	width:100%;
+background:url("mosaic.png") no-repeat center center fixed;
+	  -webkit-background-size: cover;
+  -moz-background-size: cover;
+  -o-background-size: cover;
+  background-size: cover;
+position: relative;
+}
+.main span{
+position: absolute;
+top:0;
+left:0;
+	height:900px;
+	width:100%;
+background:url("mosaic-less.png") no-repeat center center fixed;
+	  -webkit-background-size: cover;
+  -moz-background-size: cover;
+  -o-background-size: cover;
+  background-size: cover;
+opacity: 0;
+-webkit-transition: opacity 3s;
+-moz-transition: opacity 3s;
+-o-transition: opacity 3s;
+}
+.main span:hover{
+opacity: 1;
+}
+</style>
+</head>
+<body>
+	<div class="main">
+	Content
+	<span>
+	</span>
+	</div>
+</body>

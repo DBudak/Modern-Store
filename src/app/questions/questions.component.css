@@ -1,0 +1,35 @@
+.row.products {
+    height: 100vh;
+
+}
+.questions-block {
+    background: white;
+    border-right: 1px solid grey;
+}
+.image-preload {
+    position: absolute;
+    left: -9999px;
+}
+.products-block {
+    -webkit-background-size: cover;
+    -moz-background-size: cover;
+    -o-background-size: cover;
+    background-size: cover;
+    background-repeat: no-repeat;
+    transition: background 3s;
+    -webkit-transition: background 3s;
+    -moz-transition: background 3s;
+    -o-transition: background 3s;
+}
+.page-0{
+    background-image:url("../assets/mosaic-md.png");
+}
+.page-1{
+    background-image:url("../assets/mosaic-less-md.png");  
+}
+.prod-a{
+    background-image:url("../assets/prod-a.png");
+}
+.prod-b{
+    background-image:url("../assets/prod-b.png");
+}
