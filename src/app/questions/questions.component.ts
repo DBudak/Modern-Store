@@ -15,6 +15,24 @@ export class QuestionsComponent implements OnInit {
   preload_images : Array<string>;
   user_choices;
   product_choice : Product;
+  isFinished : boolean;
+
+  sliderBtnText : string;
+  sliderClass : string;
+  sliderOpened : boolean;
+
+  sliderControl(): boolean{
+    if(this.sliderClass.includes("closed")){
+      this.sliderBtnText = 'Hide Description';
+      this.sliderClass = 'slider-msg';
+      this.sliderOpened = true;
+    }else{
+      this.sliderBtnText = 'Show Description';
+      this.sliderClass = 'slider-msg closed';
+      this.sliderOpened = false;
+    }
+    return false;
+  }
 
   nextPage( form ): boolean{
     this.current_page++;
@@ -22,7 +40,7 @@ export class QuestionsComponent implements OnInit {
       this.user_choices.push(form.value[prop]);
     console.log(this.user_choices);
     if(this.current_page < this.question_pages.length){
-      this.page_class = `col-xl-10 col-lg-8 products-block page-${this.current_page}`;
+      this.page_class = `col-xl-9 col-lg-12 products-block page-${this.current_page}`;
       this.questions = this.question_pages[this.current_page];     
     }else{
       //count score for each product
@@ -46,9 +64,8 @@ export class QuestionsComponent implements OnInit {
             this.product_choice = product;
         }
       );
-      this.page_class = `col-xl-10 col-lg-8 products-block ${this.product_choice.winClass}`;
-
-      console.log('last page');
+      this.page_class = `col-xl-9 col-lg-12 products-block ${this.product_choice.winClass}`;
+      this.isFinished = true;
     }
     return false;
   }
@@ -58,7 +75,7 @@ export class QuestionsComponent implements OnInit {
 
     this.products =[
       new Product(
-        'Product A',
+        'Johnsons',
         'prod-a',
         [
           'Straight',
@@ -74,7 +91,7 @@ export class QuestionsComponent implements OnInit {
         ]
       ),
       new Product(
-        'Product B',
+        'Clear',
         'prod-b',
         [
           'Curly',
@@ -84,7 +101,7 @@ export class QuestionsComponent implements OnInit {
           'Blonde',
           'Red',
           'Dry',
-          'Greasy',
+          'Oily',
           'Spongy',
           'Silky'
         ]
@@ -130,7 +147,7 @@ export class QuestionsComponent implements OnInit {
             'Normal',
             'Dry',
             'Colored',
-            'Greasy'
+            'Oily'
           ]
         ),
         new Question(
@@ -148,7 +165,7 @@ export class QuestionsComponent implements OnInit {
     ];
     this.current_page = 0;
     this.questions = this.question_pages[this.current_page];
-    this.page_class = `col-xl-10 col-lg-8 products-block page-${this.current_page}`;
+    this.page_class = `col-xl-9 col-lg-12 products-block page-${this.current_page}`;
     this.preload_images =[
       "../assets/mosaic-md.png",
       "../assets/mosaic-less-md.png",
@@ -156,6 +173,10 @@ export class QuestionsComponent implements OnInit {
       "../assets/prod-b.png"
     ];
     this.product_choice = this.products[0];
+    this.isFinished = false;
+    this.sliderBtnText = 'Hide Description';
+    this.sliderClass = 'slider-msg';
+    this.sliderOpened = true;
   }
 
   ngOnInit() {

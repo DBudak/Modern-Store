@@ -2,17 +2,69 @@
   <img *ngFor="let image of preload_images" [attr.src]="image">
 </div>
 <div class="container-fluid">
+  <div [attr.class]="sliderClass">
+    <div class="row" *ngIf="sliderOpened">
+      <div class="col-12">
+        <h1 class="display-4">Modern Store App</h1>
+        <div class="pitch">
+          Nobody has time to scroll through a boring grid of products anymore. In order to grab customer's attention you need to be interesting. And that's where Modern Store App comes in.
+          Get your customers involved and guide them to a right product with a few questions about their needs and desires.
+          This will help the customer to pick the right product right away and help store owners to get customers more interested and involved.
+        </div>
+        <div class="list-title">
+          This is a demo of the Modern Store App. It uses shampoos as a simple example. Modern Store App works virtually for any product/service/store you can come up with.<br/>
+          <b>Features</b>
+        </div>
+        <ul>
+          <li>Gets your customers involved and engaged with your store</li>
+          <li>Works for any store/brand design</li>
+          <li>Works for any product/service</li>
+          <li>Perfectly scalable - works for any number of products/questions</li>
+          <li>Seamlessly integrates with your existing e-commerce store</li>
+        </ul>       
+        If you are interested in implementing this in your store please contact the author: <a href="mailto:dmitriybudak@gmail.com">dmitriybudak@gmail.com</a> or check my <a href="http://dbudak.com" target="_blank">website</a>
+      </div>
+    </div>
+    <div class="row text-right">
+      <div class="col-12">
+        <div *ngIf="!sliderOpened" class="closed-text">
+          <b>Modern Store App</b> by <a href="http://dbudak.com" target="_blank">Dmitriy Budak</a>
+        </div>
+        <button class="slider-control"
+        (click)="sliderControl()">
+          {{sliderBtnText}}
+        </button>
+      </div>
+    </div>
+  </div>
   <div  class="row products">
-    <div class="col-xl-2 col-lg-4 questions-block">
+    <div class="col-xl-3 col-lg-12 questions-block">
+      <div class="final-msg text-center"
+        *ngIf="isFinished">
+          <div class="title">
+            Thank you!
+          </div>
+          <p>
+            We think {{product_choice.title}} is a perfect fit for your hair!
+          </p>   
+          <p class="dev-note">
+            <i>Author Note: At this point customer gets redirected to 
+            a product page, cart or checkout.</i>
+          </p>   
+      </div>
       <form 
+          *ngIf="!isFinished"
           #f="ngForm" 
-          (ngSubmit)="nextPage(f)">       
+          (ngSubmit)="nextPage(f)">
+          <div class="title">
+            Let's find a product that fits your needs
+          </div>       
         <div class="form-group" 
         *ngFor="let question of questions">
           <label [attr.for]="question.name">
             {{question.text}}
           </label><br/>
-          <select class="form-control"
+          <select class="form-control" required
           [name]="question.name"
           ngModel>
             <option 
